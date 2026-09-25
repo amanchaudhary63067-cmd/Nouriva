@@ -1,0 +1,860 @@
+/* =========================
+   NOURIVA FOOD GUIDE
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green-dark: #173f35;
+    --green: #2f7d5b;
+    --green-light: #e8f4ed;
+    --cream: #f7f4ed;
+    --white: #ffffff;
+    --text: #20302a;
+    --muted: #68756f;
+    --border: #dce6df;
+    --shadow: 0 12px 35px rgba(24, 55, 43, 0.08);
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.guide-header {
+    background: var(--white);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-content {
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding:
+        16px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.brand-icon {
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 14px;
+
+    background:
+        var(--green-light);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+
+.brand h1 {
+    font-size: 21px;
+
+    color:
+        var(--green-dark);
+
+    line-height: 1.1;
+}
+
+
+.brand span {
+    font-size: 12px;
+
+    color:
+        var(--muted);
+}
+
+
+.back-button {
+    text-decoration: none;
+
+    color:
+        var(--green-dark);
+
+    background:
+        var(--green-light);
+
+    padding:
+        10px 16px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        0.2s ease;
+}
+
+
+.back-button:hover {
+    background:
+        #dceee3;
+}
+
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding:
+        50px 24px 70px;
+}
+
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background:
+        var(--green-dark);
+
+    color:
+        var(--white);
+
+    border-radius: 24px;
+
+    padding:
+        55px 50px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.hero::after {
+    content: "🥗";
+
+    position: absolute;
+
+    right: 60px;
+
+    top: 35px;
+
+    font-size: 110px;
+
+    opacity: 0.15;
+}
+
+
+.hero-label {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    color:
+        #b9ddc8;
+}
+
+
+.hero h2 {
+    font-size: 48px;
+
+    line-height: 1.08;
+
+    margin:
+        15px 0;
+}
+
+
+.hero p {
+    max-width: 550px;
+
+    color:
+        #dcebe3;
+
+    font-size: 17px;
+}
+
+
+
+/* =========================
+   NOTICE
+========================= */
+
+.notice {
+    margin-top: 24px;
+
+    padding: 20px 22px;
+
+    border:
+        1px solid #d7e7dd;
+
+    background:
+        #eef7f1;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: flex-start;
+}
+
+
+.notice-icon {
+    font-size: 22px;
+}
+
+
+.notice strong {
+    color:
+        var(--green-dark);
+
+    font-size: 15px;
+}
+
+
+.notice p {
+    color:
+        var(--muted);
+
+    font-size: 14px;
+
+    margin-top: 4px;
+}
+
+
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.guide-section {
+    margin-top: 55px;
+}
+
+
+.section-heading span {
+    color:
+        var(--green);
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
+
+
+.section-heading h2 {
+    font-size: 32px;
+
+    margin:
+        8px 0 5px;
+
+    color:
+        var(--green-dark);
+}
+
+
+.section-heading p {
+    color:
+        var(--muted);
+
+    font-size: 15px;
+}
+
+
+
+/* =========================
+   CATEGORY GRID
+========================= */
+
+.category-grid {
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+.category-card {
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--white);
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow:
+        var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.category-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        #b9d7c5;
+
+    box-shadow:
+        0 18px 40px
+        rgba(24, 55, 43, 0.12);
+}
+
+
+.category-icon {
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 15px;
+
+    background:
+        var(--green-light);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    margin-bottom: 18px;
+}
+
+
+.category-card h3 {
+    color:
+        var(--green-dark);
+
+    font-size: 18px;
+
+    margin-bottom: 7px;
+}
+
+
+.category-card p {
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    min-height: 62px;
+}
+
+
+.category-card span {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color:
+        var(--green);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+
+/* =========================
+   GUIDE CONTENT
+========================= */
+
+.guide-content {
+    margin-top: 35px;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 22px;
+
+    padding:
+        35px;
+
+    box-shadow:
+        var(--shadow);
+
+    position: relative;
+}
+
+
+.guide-content.hidden {
+    display: none;
+}
+
+
+.close-guide {
+    position: absolute;
+
+    top: 20px;
+
+    right: 20px;
+
+    border: none;
+
+    background:
+        #f1f4f2;
+
+    color:
+        var(--green-dark);
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+#guideIcon {
+    font-size: 42px;
+
+    margin-bottom: 8px;
+}
+
+
+#guideLabel {
+    color:
+        var(--green);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
+
+
+#guideTitle {
+    font-size: 32px;
+
+    color:
+        var(--green-dark);
+
+    margin:
+        6px 0 8px;
+}
+
+
+#guideDescription {
+    color:
+        var(--muted);
+
+    max-width: 750px;
+
+    margin-bottom: 28px;
+}
+
+
+
+/* =========================
+   GUIDE CARDS
+========================= */
+
+.guide-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+.info-card {
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    background:
+        #fbfcfb;
+}
+
+
+.info-card h3 {
+    color:
+        var(--green-dark);
+
+    font-size: 17px;
+
+    margin-bottom: 12px;
+}
+
+
+.info-card ul {
+    padding-left: 20px;
+}
+
+
+.info-card li {
+    color:
+        #56635d;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+
+.info-card p {
+    color:
+        #56635d;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   BOTTOM NOTICE
+========================= */
+
+.bottom-notice {
+    margin-top: 45px;
+
+    background:
+        #fff8ed;
+
+    border:
+        1px solid #f1dfc2;
+
+    border-radius: 18px;
+
+    padding: 25px;
+}
+
+
+.bottom-notice h3 {
+    color:
+        #704c22;
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+
+.bottom-notice p {
+    color:
+        #756552;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .category-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .header-content {
+        padding:
+            13px 16px;
+    }
+
+
+    .back-button {
+        padding:
+            8px 12px;
+
+        font-size: 12px;
+    }
+
+
+    main {
+        padding:
+            25px 15px 50px;
+    }
+
+
+    .hero {
+        padding:
+            35px 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .hero h2 {
+        font-size: 36px;
+    }
+
+
+    .hero::after {
+        right: 10px;
+
+        top: 20px;
+
+        font-size: 75px;
+    }
+
+
+    .category-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .guide-content {
+        padding:
+            25px 20px;
+    }
+
+
+    .guide-cards {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    #guideTitle {
+        font-size: 26px;
+    }
+
+}
+/* =========================
+   FOOD & WELLNESS GUIDE LINK
+========================= */
+
+.wellness-link-card {
+    background: linear-gradient(
+        135deg,
+        #eef8f1,
+        #ffffff
+    );
+
+    border: 1px solid #d7e8dc;
+
+    border-radius: 22px;
+
+    padding: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(24, 55, 43, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.wellness-link-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 38px
+        rgba(24, 55, 43, 0.11);
+}
+
+
+.wellness-link-content span {
+    display: block;
+
+    color: #2f7d5b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+
+.wellness-link-content h2 {
+    color: #173f35;
+
+    font-size: 27px;
+
+    margin: 0 0 8px;
+}
+
+
+.wellness-link-content p {
+    color: #68756f;
+
+    font-size: 14px;
+
+    max-width: 650px;
+
+    margin: 0;
+
+    line-height: 1.6;
+}
+
+
+.wellness-link-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    white-space: nowrap;
+
+    text-decoration: none;
+
+    background: #2f7d5b;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.wellness-link-button:hover {
+    background: #245f46;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .wellness-link-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 24px;
+    }
+
+
+    .wellness-link-content h2 {
+        font-size: 23px;
+    }
+
+
+    .wellness-link-button {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nouriva | Food & Wellness Guide</title>
+
+    <link
+        rel="stylesheet"
+        href="food-guide.css"
+    >
+    <link rel="stylesheet" href="food-guide.js">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="guide-header">
+
+        <div class="header-content">
+
+            <div class="brand">
+                <div class="brand-icon">🌿</div>
+
+                <div>
+                    <h1>Nouriva</h1>
+                    <span>Food & Wellness</span>
+                </div>
+            </div>
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <span class="hero-label">
+                NOURIVA WELLNESS GUIDE
+            </span>
+
+            <h2>
+                Eat better.<br>
+                Feel better.
+            </h2>
+
+            <p>
+                Simple food and lifestyle guidance
+                for everyday wellness.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             IMPORTANT NOTICE
+        ========================== -->
+
+        <section class="notice">
+
+            <div class="notice-icon">
+                ℹ️
+            </div>
+
+            <div>
+
+                <strong>
+                    General wellness information
+                </strong>
+
+                <p>
+                    This guide provides general food,
+                    hydration and lifestyle information.
+                    It does not diagnose or treat medical
+                    conditions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUICK CATEGORIES
+        ========================== -->
+
+        <section class="guide-section">
+
+            <div class="section-heading">
+
+                <span>
+                    EXPLORE
+                </span>
+
+                <h2>
+                    What are you looking for?
+                </h2>
+
+                <p>
+                    Choose a topic to get simple,
+                    practical guidance.
+                </p>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <!-- Healthy Eating -->
+
+                <button
+                    class="category-card"
+                    onclick="showGuide('healthy')"
+                >
+
+                    <div class="category-icon">
+                        🥗
+                    </div>
+
+                    <h3>
+                        Healthy Eating
+                    </h3>
+
+                    <p>
+                        Build balanced everyday meals.
+                    </p>
+
+                    <span>
+                        Explore →
+                    </span>
+
+                </button>
+
+
+                <!-- Weight Gain -->
+
+                <button
+                    class="category-card"
+                    onclick="showGuide('gain')"
+                >
+
+                    <div class="category-icon">
+                        📈
+                    </div>
+
+                    <h3>
+                        Gain Weight
+                    </h3>
+
+                    <p>
+                        Healthy ways to gradually
+                        increase body weight.
+                    </p>
+
+                    <span>
+                        Explore →
+                    </span>
+
+                </button>
+
+
+                <!-- Weight Loss -->
+
+                <button
+                    class="category-card"
+                    onclick="showGuide('loss')"
+                >
+
+                    <div class="category-icon">
+                        📉
+                    </div>
+
+                    <h3>
+                        Lose Weight
+                    </h3>
+
+                    <p>
+                        Sustainable food and
+                        activity habits.
+                    </p>
+
+                    <span>
+                        Explore →
+                    </span>
+
+                </button>
+
+
+                <!-- Illness -->
+
+                <button
+                    class="category-card"
+                    onclick="showGuide('unwell')"
+                >
+
+                    <div class="category-icon">
+                        🤒
+                    </div>
+
+                    <h3>
+                        Feeling Unwell
+                    </h3>
+
+                    <p>
+                        General food and hydration
+                        support during common symptoms.
+                    </p>
+
+                    <span>
+                        Explore →
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             GUIDE CONTENT
+        ========================== -->
+
+        <section
+            id="guideContent"
+            class="guide-content hidden"
+        >
+
+            <button
+                class="close-guide"
+                onclick="closeGuide()"
+            >
+                ✕ Close
+            </button>
+
+            <div id="guideIcon"></div>
+
+            <span id="guideLabel"></span>
+
+            <h2 id="guideTitle"></h2>
+
+            <p id="guideDescription"></p>
+
+
+            <div
+                id="guideCards"
+                class="guide-cards"
+            ></div>
+
+        </section>
+
+
+        <!-- =========================
+             FOOD DISCLAIMER
+        ========================== -->
+
+        <section class="bottom-notice">
+
+            <h3>
+                🚨 When to seek medical care
+            </h3>
+
+            <p>
+                If symptoms are severe, persistent,
+                rapidly worsening, or you have trouble
+                breathing, severe dehydration,
+                confusion, fainting, or another
+                emergency symptom, seek medical
+                attention rather than relying on
+                food advice.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="food-guide.js"></script>
+
+</body>
+
+</html>
