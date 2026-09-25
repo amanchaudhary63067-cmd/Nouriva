@@ -50,7 +50,9 @@ body {
 }
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 .screen {
 
@@ -308,7 +310,10 @@ input:focus {
 }
 
 
-/* PROFILE */
+
+/* =========================
+   PROFILE
+========================= */
 
 .profile-box {
 
@@ -338,7 +343,10 @@ input:focus {
 }
 
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header {
 
@@ -401,7 +409,10 @@ header {
 }
 
 
-/* DASHBOARD */
+
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard-main {
 
@@ -471,7 +482,10 @@ header {
 }
 
 
-/* STATS */
+
+/* =========================
+   STATS
+========================= */
 
 .stats {
 
@@ -529,7 +543,10 @@ header {
 }
 
 
-/* NOTICE */
+
+/* =========================
+   NOTICE
+========================= */
 
 .notice {
 
@@ -555,7 +572,385 @@ header {
 }
 
 
-/* MODAL */
+
+/* =========================
+   NUTRITION SECTION
+========================= */
+
+.feature-section {
+
+    margin-top: 45px;
+
+}
+
+
+.section-heading {
+
+    margin-bottom: 24px;
+
+}
+
+
+.section-heading span {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #2f7358;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 8px 0 6px;
+
+    font-size: 30px;
+
+}
+
+
+.section-heading p {
+
+    margin: 0;
+
+    color: #66736d;
+
+}
+
+
+.nutrition-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.nutrition-card {
+
+    background: white;
+
+    border: 1px solid #e1e8e3;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(30, 60, 45, 0.05);
+
+}
+
+
+.nutrition-card small {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #6d7973;
+
+}
+
+
+.nutrition-card strong {
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 34px;
+
+    color: #1f3028;
+
+}
+
+
+.nutrition-card p {
+
+    margin: 8px 0 0;
+
+    color: #77827d;
+
+    font-size: 14px;
+
+}
+
+
+.meal-card {
+
+    margin-top: 22px;
+
+    background: #eef7f1;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+}
+
+
+.meal-card h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    font-size: 21px;
+
+}
+
+
+.meal-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+
+}
+
+
+.meal-item {
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    border: 1px solid #e0e9e3;
+
+}
+
+
+.meal-item strong {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+}
+
+
+.meal-item span {
+
+    color: #68756f;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+
+/* =========================
+   WATER TRACKER
+========================= */
+
+.water-card {
+
+    background: white;
+
+    border: 1px solid #e1e8e3;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(30, 60, 45, 0.05);
+
+}
+
+
+.water-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.water-top small,
+.water-intake small {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #6d7973;
+
+}
+
+
+.water-top strong,
+.water-intake strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 30px;
+
+    color: #1f3028;
+
+}
+
+
+.water-intake {
+
+    text-align: right;
+
+}
+
+
+.water-progress {
+
+    width: 100%;
+
+    height: 18px;
+
+    background: #e8efeb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.water-progress-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #4d9272;
+
+    transition:
+        width 0.4s ease;
+
+}
+
+
+#waterProgressText {
+
+    margin: 12px 0 20px;
+
+    color: #68756f;
+
+    font-size: 14px;
+
+}
+
+
+.water-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.water-buttons button {
+
+    border: none;
+
+    background: var(--green);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.water-buttons button:hover {
+
+    background: var(--dark);
+
+}
+
+
+.reset-water {
+
+    margin-top: 15px;
+
+    border: 1px solid #d7e1db;
+
+    background: white;
+
+    color: #46544d;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+}
+
+
+.reset-water:hover {
+
+    background: #f4f7f5;
+
+}
+
+
+.water-message {
+
+    margin-top: 16px;
+
+    font-weight: 600;
+
+    color: var(--green);
+
+}
+
+
+
+/* =========================
+   MODAL
+========================= */
 
 .modal {
 
@@ -611,7 +1006,10 @@ header {
 }
 
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px) {
 
@@ -646,7 +1044,58 @@ header {
     }
 
 
+    .nutrition-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .meal-list {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .water-top {
+
+        flex-direction: column;
+
+    }
+
+
+    .water-intake {
+
+        text-align: left;
+
+    }
+
+
+    .water-buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .water-buttons button {
+
+        width: 100%;
+
+    }
+
 }
+
 
 
 @media(max-width:450px) {
@@ -664,142 +1113,6 @@ header {
 
         font-size: 30px;
 
-    }
-
-}
-/* =========================
-   NUTRITION SECTION
-========================= */
-
-.feature-section {
-    margin-top: 45px;
-}
-
-
-.section-heading {
-    margin-bottom: 24px;
-}
-
-
-.section-heading span {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #2f7358;
-}
-
-
-.section-heading h2 {
-    margin: 8px 0 6px;
-    font-size: 30px;
-}
-
-
-.section-heading p {
-    margin: 0;
-    color: #66736d;
-}
-
-
-.nutrition-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
-
-
-.nutrition-card {
-    background: white;
-    border: 1px solid #e1e8e3;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(30, 60, 45, 0.05);
-}
-
-
-.nutrition-card small {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #6d7973;
-}
-
-
-.nutrition-card strong {
-    display: block;
-    margin-top: 10px;
-    font-size: 34px;
-    color: #1f3028;
-}
-
-
-.nutrition-card p {
-    margin: 8px 0 0;
-    color: #77827d;
-    font-size: 14px;
-}
-
-
-.meal-card {
-    margin-top: 22px;
-    background: #eef7f1;
-    border-radius: 22px;
-    padding: 28px;
-}
-
-
-.meal-card h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 21px;
-}
-
-
-.meal-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-}
-
-
-.meal-item {
-    background: white;
-    border-radius: 15px;
-    padding: 18px;
-    border: 1px solid #e0e9e3;
-}
-
-
-.meal-item strong {
-    display: block;
-    margin-bottom: 7px;
-}
-
-
-.meal-item span {
-    color: #68756f;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-    .nutrition-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .meal-list {
-        grid-template-columns: 1fr;
-    }
-
-
-    .section-heading h2 {
-        font-size: 25px;
     }
 
 }

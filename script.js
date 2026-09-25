@@ -3,6 +3,7 @@ import {
     db
 } from "./firebase-config.js";
 
+
 import {
     RecaptchaVerifier,
     signInWithPhoneNumber,
@@ -11,13 +12,16 @@ import {
 } from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+
 import {
     doc,
     getDoc,
     setDoc,
+    updateDoc,
     serverTimestamp
 } from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
 
 
 /* =========================
@@ -47,6 +51,39 @@ let confirmationResult = null;
 let recaptchaVerifier = null;
 
 
+
+/* =========================
+   WATER TRACKER
+========================= */
+
+let todayWater = 0;
+
+
+/*
+ * Returns today's date.
+ * Example: 2026-09-25
+ */
+
+function getTodayDate() {
+
+    const now = new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(now.getMonth() + 1)
+            .padStart(2, "0");
+
+    const day =
+        String(now.getDate())
+            .padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+
 /* =========================
    RECAPTCHA
 ========================= */
@@ -65,9 +102,11 @@ function createRecaptcha() {
                 size: "normal",
 
                 callback: () => {
+
                     console.log(
                         "reCAPTCHA verified"
                     );
+
                 },
 
                 "expired-callback": () => {
@@ -82,6 +121,7 @@ function createRecaptcha() {
 
     return recaptchaVerifier;
 }
+
 
 
 /* =========================
@@ -154,6 +194,7 @@ async function sendOTP() {
 
     }
 
+
     catch (error) {
 
         console.error(error);
@@ -165,6 +206,7 @@ async function sendOTP() {
     }
 
 }
+
 
 
 /* =========================
@@ -242,6 +284,7 @@ async function verifyOTP() {
 
     }
 
+
     catch (error) {
 
         console.error(error);
@@ -253,6 +296,7 @@ async function verifyOTP() {
     }
 
 }
+
 
 
 /* =========================
@@ -269,6 +313,7 @@ document
                 "hidden"
             );
 
+
             phoneStep.classList.remove(
                 "hidden"
             );
@@ -283,6 +328,7 @@ document
 
         }
     );
+
 
 
 /* =========================
@@ -313,6 +359,7 @@ onAuthStateChanged(
 
     }
 );
+
 
 
 /* =========================
@@ -362,6 +409,7 @@ async function loadUserProfile(uid) {
 
         }
 
+
         else {
 
             console.log(
@@ -374,6 +422,7 @@ async function loadUserProfile(uid) {
         }
 
     }
+
 
     catch (error) {
 
@@ -390,6 +439,7 @@ async function loadUserProfile(uid) {
     }
 
 }
+
 
 
 /* =========================
@@ -491,6 +541,12 @@ async function saveProfile() {
                 weight:
                     weight,
 
+                waterToday:
+                    0,
+
+                waterDate:
+                    getTodayDate(),
+
                 updatedAt:
                     serverTimestamp(),
 
@@ -506,12 +562,16 @@ async function saveProfile() {
             name,
             age,
             height,
-            weight
+            weight,
+
+            waterToday: 0,
+            waterDate: getTodayDate()
 
         });
 
 
     }
+
 
     catch (error) {
 
@@ -530,6 +590,7 @@ async function saveProfile() {
 }
 
 
+
 /* =========================
    SHOW DASHBOARD
 ========================= */
@@ -540,13 +601,16 @@ function showDashboard(data) {
         "hidden"
     );
 
+
     profilePage.classList.add(
         "hidden"
     );
 
+
     dashboard.classList.remove(
         "hidden"
     );
+
 
 
     /* =========================
@@ -575,6 +639,7 @@ function showDashboard(data) {
         .getElementById("dashWeight")
         .textContent =
             data.weight || "--";
+
 
 
     /* =========================
@@ -639,6 +704,7 @@ function showDashboard(data) {
                 status;
 
     }
+
 
 
     /* =========================
@@ -744,9 +810,284 @@ function showDashboard(data) {
 
         }
 
+
+
+        /* =========================
+           WATER TRACKER
+        ========================= */
+
+        let savedWater = 0;
+
+        const today =
+            getTodayDate();
+
+
+        /*
+         * If saved water belongs to today,
+         * load it.
+         *
+         * If it is from another day,
+         * start today's tracker from zero.
+         */
+
+        if (
+            data.waterDate === today &&
+            typeof data.waterToday === "number"
+        ) {
+
+            savedWater =
+                data.waterToday;
+
+        }
+
+
+        todayWater =
+            savedWater;
+
+
+        const waterGoal =
+            water;
+
+
+        const waterGoalElement =
+            document.getElementById(
+                "waterTrackerGoal"
+            );
+
+
+        if (waterGoalElement) {
+
+            waterGoalElement.textContent =
+                (waterGoal / 1000).toFixed(1) +
+                " L";
+
+        }
+
+
+        updateWaterUI(
+            waterGoal
+        );
+
     }
 
 }
+
+
+
+/* =========================
+   WATER - ADD
+========================= */
+
+window.addWater =
+    async function(amount) {
+
+        todayWater += amount;
+
+
+        updateWaterUI();
+
+
+        await saveWaterData();
+
+    };
+
+
+
+/* =========================
+   WATER - RESET
+========================= */
+
+window.resetWater =
+    async function() {
+
+        todayWater = 0;
+
+
+        updateWaterUI();
+
+
+        await saveWaterData();
+
+    };
+
+
+
+/* =========================
+   WATER - UPDATE UI
+========================= */
+
+function updateWaterUI(goal = null) {
+
+    const goalElement =
+        document.getElementById(
+            "waterTrackerGoal"
+        );
+
+
+    const intakeElement =
+        document.getElementById(
+            "waterIntake"
+        );
+
+
+    const progressElement =
+        document.getElementById(
+            "waterProgress"
+        );
+
+
+    const progressTextElement =
+        document.getElementById(
+            "waterProgressText"
+        );
+
+
+    const messageElement =
+        document.getElementById(
+            "waterMessage"
+        );
+
+
+    if (
+        !goalElement ||
+        !intakeElement ||
+        !progressElement ||
+        !progressTextElement
+    ) {
+
+        return;
+
+    }
+
+
+    if (!goal) {
+
+        const goalText =
+            goalElement.textContent;
+
+
+        goal =
+            parseFloat(goalText) *
+            1000;
+
+    }
+
+
+    if (!goal || goal <= 0) {
+
+        return;
+
+    }
+
+
+    const percentage =
+        Math.min(
+            Math.round(
+                (todayWater / goal) * 100
+            ),
+            100
+        );
+
+
+    intakeElement.textContent =
+        todayWater + " ml";
+
+
+    progressElement.style.width =
+        percentage + "%";
+
+
+    progressTextElement.textContent =
+        percentage +
+        "% of your daily goal";
+
+
+    if (
+        messageElement
+    ) {
+
+        if (percentage >= 100) {
+
+            messageElement.textContent =
+                "🎉 Daily water goal completed!";
+
+        }
+
+        else {
+
+            messageElement.textContent =
+                "";
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================
+   SAVE WATER DATA
+========================= */
+
+async function saveWaterData() {
+
+    const user =
+        auth.currentUser;
+
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await updateDoc(
+
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+
+            {
+
+                waterToday:
+                    todayWater,
+
+                waterDate:
+                    getTodayDate(),
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+        console.log(
+            "Water data saved:",
+            todayWater
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Water save error:",
+            error
+        );
+
+    }
+
+}
+
 
 
 /* =========================
@@ -823,6 +1164,7 @@ document
 
             }
 
+
             catch (error) {
 
                 console.error(
@@ -834,6 +1176,7 @@ document
 
         }
     );
+
 
 
 /* =========================
@@ -911,11 +1254,13 @@ document
             try {
 
                 await setDoc(
+
                     doc(
                         db,
                         "users",
                         user.uid
                     ),
+
                     {
 
                         name,
@@ -947,16 +1292,32 @@ document
                     );
 
 
+                /*
+                 * Keep existing water data
+                 * while updating profile.
+                 */
+
+                const currentWater =
+                    todayWater;
+
+
                 showDashboard({
 
                     name,
                     age,
                     height,
-                    weight
+                    weight,
+
+                    waterToday:
+                        currentWater,
+
+                    waterDate:
+                        getTodayDate()
 
                 });
 
             }
+
 
             catch (error) {
 
@@ -974,6 +1335,7 @@ document
 
         }
     );
+
 
 
 /* =========================
@@ -998,6 +1360,7 @@ document
     );
 
 
+
 /* =========================
    LOGOUT
 ========================= */
@@ -1014,6 +1377,7 @@ document
     );
 
 
+
 /* =========================
    PAGE FUNCTIONS
 ========================= */
@@ -1024,9 +1388,11 @@ function showLogin() {
         "hidden"
     );
 
+
     profilePage.classList.add(
         "hidden"
     );
+
 
     dashboard.classList.add(
         "hidden"
@@ -1041,9 +1407,11 @@ function showProfilePage() {
         "hidden"
     );
 
+
     profilePage.classList.remove(
         "hidden"
     );
+
 
     dashboard.classList.add(
         "hidden"
@@ -1059,6 +1427,11 @@ function showMessage(text) {
 
 }
 
+
+
+/* =========================
+   FIREBASE ERROR HANDLING
+========================= */
 
 function getFirebaseError(error) {
 
