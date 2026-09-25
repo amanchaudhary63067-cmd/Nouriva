@@ -1,0 +1,359 @@
+/* =========================
+   NOURIVA DAILY ROUTINE
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5faf7;
+    color: #173f35;
+}
+
+
+/* HEADER */
+
+.routine-header {
+    background: white;
+    padding: 22px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e2eee7;
+}
+
+.brand {
+    font-size: 22px;
+    font-weight: 800;
+    color: #2f7d5b;
+    letter-spacing: 2px;
+}
+
+.routine-header p {
+    margin-top: 4px;
+    color: #718078;
+    font-size: 13px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #2f7d5b;
+    border: 1px solid #cfe2d7;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* MAIN */
+
+.routine-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 45px auto;
+}
+
+
+/* INTRO */
+
+.routine-intro {
+    margin-bottom: 30px;
+}
+
+.routine-intro span,
+.add-card > span,
+.routine-title span {
+    color: #2f7d5b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.routine-intro h1 {
+    font-size: 38px;
+    margin: 8px 0;
+}
+
+.routine-intro p {
+    color: #68756f;
+    font-size: 15px;
+}
+
+
+/* PROGRESS */
+
+.progress-card {
+    background: white;
+    border-radius: 22px;
+    padding: 25px;
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(24, 55, 43, 0.07);
+}
+
+.progress-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress-top span {
+    color: #68756f;
+    font-size: 14px;
+}
+
+.progress-top h2 {
+    font-size: 32px;
+    margin-top: 5px;
+}
+
+.progress-circle {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #e8f4ed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2f7d5b;
+    font-weight: 700;
+}
+
+.progress-bar {
+    height: 9px;
+    background: #e5eee8;
+    border-radius: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+#progressFill {
+    height: 100%;
+    width: 0%;
+    background: #2f7d5b;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+
+/* ROUTINE CARD */
+
+.routine-card {
+    background: white;
+    border-radius: 22px;
+    padding: 28px;
+
+    box-shadow:
+        0 10px 30px rgba(24, 55, 43, 0.07);
+}
+
+.routine-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.routine-title h2 {
+    margin-top: 6px;
+    font-size: 24px;
+}
+
+.reset-btn {
+    border: none;
+    background: #edf5f0;
+    color: #2f7d5b;
+    padding: 9px 14px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+
+/* ROUTINE ITEM */
+
+.routine-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 18px 5px;
+
+    border-bottom: 1px solid #edf1ee;
+}
+
+.routine-item:last-child {
+    border-bottom: none;
+}
+
+.routine-time {
+    width: 80px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: #2f7d5b;
+}
+
+.routine-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 14px;
+
+    background: #edf7f1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.routine-info {
+    flex: 1;
+}
+
+.routine-info h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.routine-info p {
+    font-size: 12px;
+    color: #7a8580;
+}
+
+
+/* CHECKBOX */
+
+.complete-btn {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    border: 2px solid #b9cec1;
+
+    background: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.routine-item.completed .complete-btn {
+    background: #2f7d5b;
+    border-color: #2f7d5b;
+    color: white;
+}
+
+.routine-item.completed .routine-info h3 {
+    text-decoration: line-through;
+    color: #84928b;
+}
+
+
+/* ADD CARD */
+
+.add-card {
+    background: white;
+    border-radius: 22px;
+    padding: 28px;
+    margin-top: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(24, 55, 43, 0.07);
+}
+
+.add-card h2 {
+    margin: 8px 0 20px;
+    font-size: 22px;
+}
+
+.add-form {
+    display: flex;
+    gap: 12px;
+}
+
+.add-form input {
+    border: 1px solid #d8e5dd;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+}
+
+.add-form input[type="text"] {
+    flex: 1;
+}
+
+.add-form button {
+    border: none;
+    background: #2f7d5b;
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .routine-header {
+        padding: 18px 5%;
+    }
+
+    .routine-container {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .routine-intro h1 {
+        font-size: 30px;
+    }
+
+    .routine-card {
+        padding: 20px;
+    }
+
+    .routine-time {
+        width: 60px;
+        font-size: 12px;
+    }
+
+    .routine-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+
+    .routine-info h3 {
+        font-size: 14px;
+    }
+
+    .add-form {
+        flex-direction: column;
+    }
+
+    .add-form button {
+        width: 100%;
+    }
+
+}

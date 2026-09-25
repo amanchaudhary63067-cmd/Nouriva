@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nouriva - Daily Routine</title>
+
+    <link rel="stylesheet" href="routine.css">
+    <link rel="stylesheet" href="routine.js">
+</head>
+
+<body>
+
+    <header class="routine-header">
+
+        <div>
+            <div class="brand">NOURIVA</div>
+            <p>My Daily Routine</p>
+        </div>
+
+        <a href="index.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <main class="routine-container">
+
+        <section class="routine-intro">
+
+            <span>DAILY WELLNESS</span>
+
+            <h1>
+                Plan your day 🌿
+            </h1>
+
+            <p>
+                Organize your sleep, meals, exercise,
+                study and relaxation time.
+            </p>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+
+        <section class="progress-card">
+
+            <div class="progress-top">
+
+                <div>
+                    <span>Today's Progress</span>
+                    <h2 id="progressText">
+                        0%
+                    </h2>
+                </div>
+
+                <div class="progress-circle">
+                    <span id="progressNumber">0%</span>
+                </div>
+
+            </div>
+
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+
+        </section>
+
+
+        <!-- ROUTINE -->
+
+        <section class="routine-card">
+
+            <div class="routine-title">
+
+                <div>
+                    <span>YOUR SCHEDULE</span>
+                    <h2>Today's Routine</h2>
+                </div>
+
+                <button
+                    class="reset-btn"
+                    onclick="resetRoutine()"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div id="routineList">
+
+                <!-- ROUTINE ITEMS WILL COME HERE -->
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD ACTIVITY -->
+
+        <section class="add-card">
+
+            <span>ADD ACTIVITY</span>
+
+            <h2>Create your own routine</h2>
+
+            <div class="add-form">
+
+                <input
+                    type="time"
+                    id="activityTime"
+                >
+
+                <input
+                    type="text"
+                    id="activityName"
+                    placeholder="Activity name"
+                >
+
+                <button onclick="addActivity()">
+                    + Add
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="routine.js"></script>
+
+</body>
+</html>
