@@ -3,7 +3,6 @@ import {
     db
 } from "./firebase-config.js";
 
-
 import {
     RecaptchaVerifier,
     signInWithPhoneNumber,
@@ -11,7 +10,6 @@ import {
     signOut
 } from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
 
 import {
     doc,
@@ -22,76 +20,69 @@ import {
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-
 /* =========================
    ELEMENTS
 ========================= */
 
-
 const loginPage =
     document.getElementById("loginPage");
-
 
 const profilePage =
     document.getElementById("profilePage");
 
-
 const dashboard =
     document.getElementById("dashboard");
-
 
 const phoneStep =
     document.getElementById("phoneStep");
 
-
 const otpStep =
     document.getElementById("otpStep");
-
 
 const message =
     document.getElementById("authMessage");
 
 
 let confirmationResult = null;
+let recaptchaVerifier = null;
 
 
 /* =========================
    RECAPTCHA
 ========================= */
 
+function createRecaptcha() {
 
-window.recaptchaVerifier =
-    new RecaptchaVerifier(
-        auth,
-        "recaptcha-container",
-        {
+    if (recaptchaVerifier) {
+        return recaptchaVerifier;
+    }
 
-            size: "normal",
+    recaptchaVerifier =
+        new RecaptchaVerifier(
+            auth,
+            "recaptcha-container",
+            {
+                size: "normal",
 
-            callback: () => {
+                callback: () => {
+                    console.log("reCAPTCHA verified");
+                },
 
-                console.log(
-                    "reCAPTCHA verified"
-                );
-
-            },
-
-            "expired-callback": () => {
-
-                showMessage(
-                    "reCAPTCHA expired. Please try again."
-                );
-
+                "expired-callback": () => {
+                    showMessage(
+                        "reCAPTCHA expired. Please verify again."
+                    );
+                }
             }
+        );
 
-        }
-    );
+    return recaptchaVerifier;
+}
 
 
 /* =========================
    SEND OTP
 ========================= */
-
 
 document
     .getElementById("sendOtp")
@@ -102,7 +93,6 @@ document
 
 
 async function sendOTP() {
-
 
     const phone =
         document
@@ -118,7 +108,6 @@ async function sendOTP() {
         );
 
         return;
-
     }
 
 
@@ -128,17 +117,20 @@ async function sendOTP() {
 
     try {
 
-
         showMessage(
             "Sending verification code..."
         );
+
+
+        const verifier =
+            createRecaptcha();
 
 
         confirmationResult =
             await signInWithPhoneNumber(
                 auth,
                 fullPhone,
-                window.recaptchaVerifier
+                verifier
             );
 
 
@@ -156,40 +148,15 @@ async function sendOTP() {
             "OTP sent successfully."
         );
 
-
     }
 
     catch (error) {
 
-
         console.error(error);
-
 
         showMessage(
             getFirebaseError(error)
         );
-
-
-        try {
-
-            window.recaptchaVerifier.clear();
-
-            window.recaptchaVerifier =
-                new RecaptchaVerifier(
-                    auth,
-                    "recaptcha-container",
-                    {
-                        size: "normal"
-                    }
-                );
-
-        }
-
-        catch (e) {
-
-            console.log(e);
-
-        }
 
     }
 
@@ -200,7 +167,6 @@ async function sendOTP() {
    VERIFY OTP
 ========================= */
 
-
 document
     .getElementById("verifyOtp")
     .addEventListener(
@@ -210,7 +176,6 @@ document
 
 
 async function verifyOTP() {
-
 
     const code =
         document
@@ -226,7 +191,6 @@ async function verifyOTP() {
         );
 
         return;
-
     }
 
 
@@ -243,19 +207,40 @@ async function verifyOTP() {
 
     try {
 
-
         showMessage(
             "Verifying..."
         );
 
 
-        await confirmationResult.confirm(
-            code
+        const result =
+            await confirmationResult.confirm(
+                code
+            );
+
+
+        const user =
+            result.user;
+
+
+        console.log(
+            "Phone verified:",
+            user.uid
         );
 
 
         showMessage(
             "Phone verified successfully."
+        );
+
+
+        /*
+         * IMPORTANT:
+         * Directly load the profile after login.
+         * We don't wait for the reCAPTCHA cleanup.
+         */
+
+        await loadUserProfile(
+            user.uid
         );
 
 
@@ -278,7 +263,6 @@ async function verifyOTP() {
    CHANGE NUMBER
 ========================= */
 
-
 document
     .getElementById("changeNumber")
     .addEventListener(
@@ -293,9 +277,13 @@ document
                 "hidden"
             );
 
+
             document
                 .getElementById("otp")
                 .value = "";
+
+
+            confirmationResult = null;
 
         }
     );
@@ -305,18 +293,15 @@ document
    AUTH STATE
 ========================= */
 
-
 onAuthStateChanged(
     auth,
     async (user) => {
-
 
         if (!user) {
 
             showLogin();
 
             return;
-
         }
 
 
@@ -325,6 +310,11 @@ onAuthStateChanged(
             user.uid
         );
 
+
+        /*
+         * If login already happened,
+         * load the profile.
+         */
 
         await loadUserProfile(
             user.uid
@@ -338,11 +328,13 @@ onAuthStateChanged(
    LOAD PROFILE
 ========================= */
 
-
 async function loadUserProfile(uid) {
 
-
     try {
+
+        console.log(
+            "Loading profile..."
+        );
 
 
         const profileRef =
@@ -363,32 +355,41 @@ async function loadUserProfile(uid) {
             profileSnap.exists()
         ) {
 
-
             const data =
                 profileSnap.data();
+
+
+            console.log(
+                "Existing profile found:",
+                data
+            );
 
 
             showDashboard(
                 data
             );
 
-
         }
 
         else {
+
+            console.log(
+                "New user - profile required"
+            );
 
 
             showProfilePage();
 
         }
 
-
     }
 
     catch (error) {
 
-
-        console.error(error);
+        console.error(
+            "Profile loading error:",
+            error
+        );
 
 
         showMessage(
@@ -404,7 +405,6 @@ async function loadUserProfile(uid) {
    SAVE FIRST PROFILE
 ========================= */
 
-
 document
     .getElementById("saveProfile")
     .addEventListener(
@@ -415,15 +415,17 @@ document
 
 async function saveProfile() {
 
-
     const user =
         auth.currentUser;
 
 
     if (!user) {
 
-        return;
+        alert(
+            "Please login first."
+        );
 
+        return;
     }
 
 
@@ -470,12 +472,10 @@ async function saveProfile() {
         );
 
         return;
-
     }
 
 
     try {
-
 
         await setDoc(
             doc(
@@ -524,8 +524,10 @@ async function saveProfile() {
 
     catch (error) {
 
-
-        console.error(error);
+        console.error(
+            "Save profile error:",
+            error
+        );
 
 
         alert(
@@ -541,19 +543,15 @@ async function saveProfile() {
    SHOW DASHBOARD
 ========================= */
 
-
 function showDashboard(data) {
-
 
     loginPage.classList.add(
         "hidden"
     );
 
-
     profilePage.classList.add(
         "hidden"
     );
-
 
     dashboard.classList.remove(
         "hidden"
@@ -588,7 +586,6 @@ function showDashboard(data) {
         data.height &&
         data.weight
     ) {
-
 
         const h =
             Number(data.height) / 100;
@@ -651,13 +648,11 @@ function showDashboard(data) {
    PROFILE EDIT
 ========================= */
 
-
 document
     .getElementById("editProfile")
     .addEventListener(
         "click",
         async () => {
-
 
             const user =
                 auth.currentUser;
@@ -666,54 +661,67 @@ document
             if (!user) return;
 
 
-            const snap =
-                await getDoc(
-                    doc(
-                        db,
-                        "users",
-                        user.uid
+            try {
+
+                const snap =
+                    await getDoc(
+                        doc(
+                            db,
+                            "users",
+                            user.uid
+                        )
+                    );
+
+
+                if (!snap.exists()) {
+
+                    return;
+                }
+
+
+                const data =
+                    snap.data();
+
+
+                document
+                    .getElementById("editName")
+                    .value =
+                        data.name || "";
+
+
+                document
+                    .getElementById("editAge")
+                    .value =
+                        data.age || "";
+
+
+                document
+                    .getElementById("editHeight")
+                    .value =
+                        data.height || "";
+
+
+                document
+                    .getElementById("editWeight")
+                    .value =
+                        data.weight || "";
+
+
+                document
+                    .getElementById(
+                        "profileModal"
                     )
-                );
+                    .classList.remove(
+                        "hidden"
+                    );
 
+            }
 
-            if (!snap.exists()) return;
+            catch (error) {
 
+                console.error(error);
 
-            const data =
-                snap.data();
-
-
-            document
-                .getElementById("editName")
-                .value =
-                    data.name || "";
-
-
-            document
-                .getElementById("editAge")
-                .value =
-                    data.age || "";
-
-
-            document
-                .getElementById("editHeight")
-                .value =
-                    data.height || "";
-
-
-            document
-                .getElementById("editWeight")
-                .value =
-                    data.weight || "";
-
-
-            document
-                .getElementById(
-                    "profileModal"
-                )
-                .classList.remove(
-                    "hidden"
-                );
+            }
 
         }
     );
@@ -723,13 +731,11 @@ document
    UPDATE PROFILE
 ========================= */
 
-
 document
     .getElementById("updateProfile")
     .addEventListener(
         "click",
         async () => {
-
 
             const user =
                 auth.currentUser;
@@ -777,8 +783,22 @@ document
                 );
 
 
-            try {
+            if (
+                !name ||
+                !age ||
+                !height ||
+                !weight
+            ) {
 
+                alert(
+                    "Please complete all fields."
+                );
+
+                return;
+            }
+
+
+            try {
 
                 await setDoc(
                     doc(
@@ -826,13 +846,14 @@ document
 
                 });
 
-
             }
 
             catch (error) {
 
-
-                console.error(error);
+                console.error(
+                    "Update profile error:",
+                    error
+                );
 
 
                 alert(
@@ -848,7 +869,6 @@ document
 /* =========================
    CLOSE MODAL
 ========================= */
-
 
 document
     .getElementById("closeModal")
@@ -872,7 +892,6 @@ document
    LOGOUT
 ========================= */
 
-
 document
     .getElementById("logout")
     .addEventListener(
@@ -889,19 +908,15 @@ document
    PAGE FUNCTIONS
 ========================= */
 
-
 function showLogin() {
-
 
     loginPage.classList.remove(
         "hidden"
     );
 
-
     profilePage.classList.add(
         "hidden"
     );
-
 
     dashboard.classList.add(
         "hidden"
@@ -912,16 +927,13 @@ function showLogin() {
 
 function showProfilePage() {
 
-
     loginPage.classList.add(
         "hidden"
     );
 
-
     profilePage.classList.remove(
         "hidden"
     );
-
 
     dashboard.classList.add(
         "hidden"
@@ -939,7 +951,6 @@ function showMessage(text) {
 
 
 function getFirebaseError(error) {
-
 
     if (
         error.code ===
@@ -967,6 +978,16 @@ function getFirebaseError(error) {
     ) {
 
         return "SMS limit reached. Please try again later.";
+
+    }
+
+
+    if (
+        error.code ===
+        "auth/invalid-verification-code"
+    ) {
+
+        return "Incorrect OTP.";
 
     }
 
