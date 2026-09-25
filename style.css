@@ -667,3 +667,139 @@ header {
     }
 
 }
+/* =========================
+   NUTRITION SECTION
+========================= */
+
+.feature-section {
+    margin-top: 45px;
+}
+
+
+.section-heading {
+    margin-bottom: 24px;
+}
+
+
+.section-heading span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #2f7358;
+}
+
+
+.section-heading h2 {
+    margin: 8px 0 6px;
+    font-size: 30px;
+}
+
+
+.section-heading p {
+    margin: 0;
+    color: #66736d;
+}
+
+
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+
+.nutrition-card {
+    background: white;
+    border: 1px solid #e1e8e3;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(30, 60, 45, 0.05);
+}
+
+
+.nutrition-card small {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #6d7973;
+}
+
+
+.nutrition-card strong {
+    display: block;
+    margin-top: 10px;
+    font-size: 34px;
+    color: #1f3028;
+}
+
+
+.nutrition-card p {
+    margin: 8px 0 0;
+    color: #77827d;
+    font-size: 14px;
+}
+
+
+.meal-card {
+    margin-top: 22px;
+    background: #eef7f1;
+    border-radius: 22px;
+    padding: 28px;
+}
+
+
+.meal-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+}
+
+
+.meal-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+
+.meal-item {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    border: 1px solid #e0e9e3;
+}
+
+
+.meal-item strong {
+    display: block;
+    margin-bottom: 7px;
+}
+
+
+.meal-item span {
+    color: #68756f;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .nutrition-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .meal-list {
+        grid-template-columns: 1fr;
+    }
+
+
+    .section-heading h2 {
+        font-size: 25px;
+    }
+
+}

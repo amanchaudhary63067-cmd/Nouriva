@@ -65,13 +65,17 @@ function createRecaptcha() {
                 size: "normal",
 
                 callback: () => {
-                    console.log("reCAPTCHA verified");
+                    console.log(
+                        "reCAPTCHA verified"
+                    );
                 },
 
                 "expired-callback": () => {
+
                     showMessage(
                         "reCAPTCHA expired. Please verify again."
                     );
+
                 }
             }
         );
@@ -201,7 +205,6 @@ async function verifyOTP() {
         );
 
         return;
-
     }
 
 
@@ -233,16 +236,9 @@ async function verifyOTP() {
         );
 
 
-        /*
-         * IMPORTANT:
-         * Directly load the profile after login.
-         * We don't wait for the reCAPTCHA cleanup.
-         */
-
         await loadUserProfile(
             user.uid
         );
-
 
     }
 
@@ -310,11 +306,6 @@ onAuthStateChanged(
             user.uid
         );
 
-
-        /*
-         * If login already happened,
-         * load the profile.
-         */
 
         await loadUserProfile(
             user.uid
@@ -558,6 +549,10 @@ function showDashboard(data) {
     );
 
 
+    /* =========================
+       BASIC PROFILE
+    ========================= */
+
     document
         .getElementById("dashName")
         .textContent =
@@ -581,6 +576,10 @@ function showDashboard(data) {
         .textContent =
             data.weight || "--";
 
+
+    /* =========================
+       BMI
+    ========================= */
 
     if (
         data.height &&
@@ -641,6 +640,112 @@ function showDashboard(data) {
 
     }
 
+
+    /* =========================
+       NUTRITION CALCULATIONS
+    ========================= */
+
+    const weight =
+        Number(data.weight);
+
+    const age =
+        Number(data.age);
+
+    const height =
+        Number(data.height);
+
+
+    if (
+        weight &&
+        age &&
+        height
+    ) {
+
+        /*
+         * General wellness estimates.
+         * These are not medical prescriptions.
+         */
+
+
+        /*
+         * Simple BMR estimate.
+         * Sex/activity are not collected yet,
+         * so this is only a rough estimate.
+         */
+
+        const calories =
+            Math.round(
+                (10 * weight) +
+                (6.25 * height) -
+                (5 * age) +
+                5
+            );
+
+
+        /*
+         * General protein estimate.
+         */
+
+        const protein =
+            Math.round(
+                weight * 0.8
+            );
+
+
+        /*
+         * General hydration estimate.
+         */
+
+        const water =
+            Math.round(
+                weight * 35
+            );
+
+
+        const caloriesElement =
+            document.getElementById(
+                "dailyCalories"
+            );
+
+
+        const proteinElement =
+            document.getElementById(
+                "dailyProtein"
+            );
+
+
+        const waterElement =
+            document.getElementById(
+                "waterGoal"
+            );
+
+
+        if (caloriesElement) {
+
+            caloriesElement.textContent =
+                calories + " kcal";
+
+        }
+
+
+        if (proteinElement) {
+
+            proteinElement.textContent =
+                protein + " g";
+
+        }
+
+
+        if (waterElement) {
+
+            waterElement.textContent =
+                (water / 1000).toFixed(1) +
+                " L";
+
+        }
+
+    }
+
 }
 
 
@@ -676,6 +781,7 @@ document
                 if (!snap.exists()) {
 
                     return;
+
                 }
 
 
@@ -719,7 +825,10 @@ document
 
             catch (error) {
 
-                console.error(error);
+                console.error(
+                    "Edit profile error:",
+                    error
+                );
 
             }
 
@@ -795,6 +904,7 @@ document
                 );
 
                 return;
+
             }
 
 
