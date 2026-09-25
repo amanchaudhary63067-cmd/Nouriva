@@ -1,0 +1,669 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+
+    --green: #2d664d;
+    --dark: #18382b;
+    --light: #edf5ef;
+
+    --bg: #f5f7f4;
+
+    --text: #18221d;
+
+    --muted: #6d7770;
+
+    --border: #dce4de;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+.app {
+
+    min-height: 100vh;
+
+}
+
+
+/* LOGIN */
+
+.screen {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+
+.login-box {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(25,50,35,.08);
+
+}
+
+
+.logo {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 16px;
+
+    background: var(--green);
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 26px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+}
+
+
+.logo.small {
+
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 20px;
+
+    border-radius: 12px;
+
+}
+
+
+.login-box h1 {
+
+    font-size: 32px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.subtitle {
+
+    color: var(--muted);
+
+    margin-bottom: 40px;
+
+}
+
+
+.login-box h2 {
+
+    margin-bottom: 7px;
+
+}
+
+
+.login-box h2 + p {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+
+}
+
+
+label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin: 17px 0 7px;
+
+}
+
+
+input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+input:focus {
+
+    border-color: var(--green);
+
+}
+
+
+.phone-input {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.phone-input span {
+
+    padding: 14px;
+
+    background: var(--light);
+
+    border-radius: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.phone-input input {
+
+    flex: 1;
+
+}
+
+
+#recaptcha-container {
+
+    margin-top: 18px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.primary-btn {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--green);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.primary-btn:hover {
+
+    background: var(--dark);
+
+}
+
+
+.otp-input {
+
+    text-align: center;
+
+    font-size: 25px;
+
+    letter-spacing: 7px;
+
+}
+
+
+.text-btn {
+
+    display: block;
+
+    margin: 15px auto 0;
+
+    border: none;
+
+    background: none;
+
+    color: var(--green);
+
+    cursor: pointer;
+
+}
+
+
+.message {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+/* PROFILE */
+
+.profile-box {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(25,50,35,.08);
+
+}
+
+
+.profile-box > p {
+
+    color: var(--muted);
+
+    margin: 7px 0 25px;
+
+}
+
+
+/* HEADER */
+
+header {
+
+    height: 75px;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.brand .logo {
+
+    margin: 0;
+
+}
+
+
+.brand small {
+
+    display: block;
+
+    color: var(--muted);
+
+}
+
+
+.logout-btn {
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+}
+
+
+/* DASHBOARD */
+
+.dashboard-main {
+
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 0 20px;
+
+}
+
+
+.welcome {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 25px;
+
+}
+
+
+.welcome span {
+
+    color: var(--green);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+}
+
+
+.welcome h1 {
+
+    font-size: 38px;
+
+    margin-top: 7px;
+
+}
+
+
+.welcome p {
+
+    color: var(--muted);
+
+}
+
+
+.edit-btn {
+
+    padding: 10px 15px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+}
+
+
+/* STATS */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 15px;
+
+}
+
+
+.stat {
+
+    background: white;
+
+    padding: 24px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+}
+
+
+.stat small {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.stat strong {
+
+    display: block;
+
+    font-size: 29px;
+
+    margin: 7px 0;
+
+}
+
+
+.stat span {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* NOTICE */
+
+.notice {
+
+    margin-top: 18px;
+
+    padding: 20px;
+
+    background: var(--light);
+
+    border-radius: 15px;
+
+}
+
+
+.notice p {
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+/* MODAL */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.4);
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 20px;
+
+}
+
+
+.modal-box {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 450px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+}
+
+
+.close {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 15px;
+
+    border: none;
+
+    background: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+
+    .login-box,
+    .profile-box {
+
+        padding: 27px;
+
+    }
+
+
+    .stats {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .welcome {
+
+        display: block;
+
+    }
+
+
+    .edit-btn {
+
+        margin-top: 15px;
+
+    }
+
+
+}
+
+
+@media(max-width:450px) {
+
+
+    .stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .welcome h1 {
+
+        font-size: 30px;
+
+    }
+
+}
