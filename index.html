@@ -13,9 +13,8 @@
 
     <title>Nouriva</title>
 
-<link rel="stylesheet"href="style.css">
-<link rel="stylesheet" href="firebase-config.js">
-<link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 
@@ -68,11 +67,13 @@
                         id="phone"
                         type="tel"
                         maxlength="10"
-                        placeholder="Inter your number"
+                        placeholder="Enter your number"
                     >
 
                 </div>
 
+
+                <!-- reCAPTCHA -->
 
                 <div
                     id="recaptcha-container"
@@ -236,11 +237,13 @@
                 </div>
 
                 <div>
+
                     <strong>Nouriva</strong>
 
                     <small>
                         Wellness companion
                     </small>
+
                 </div>
 
             </div>
@@ -268,8 +271,9 @@
                     </span>
 
                     <h1>
-                        Hi, <b id="dashName">
-                        </b> 👋
+                        Hi,
+                        <b id="dashName"></b>
+                        👋
                     </h1>
 
                     <p>
@@ -460,6 +464,8 @@
 
 </div>
 
+
+<!-- MAIN JAVASCRIPT -->
 
 <script
     type="module"
