@@ -24,7 +24,9 @@
 <div class="app">
 
 
-    <!-- LOGIN -->
+    <!-- =========================
+         LOGIN
+    ========================== -->
 
     <section
         id="loginPage"
@@ -145,7 +147,9 @@
 
 
 
-    <!-- PROFILE -->
+    <!-- =========================
+         PROFILE
+    ========================== -->
 
     <section
         id="profilePage"
@@ -225,7 +229,9 @@
 
 
 
-    <!-- DASHBOARD -->
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
 
     <section
         id="dashboard"
@@ -267,6 +273,8 @@
         <main class="dashboard-main">
 
 
+            <!-- WELCOME -->
+
             <div class="welcome">
 
                 <div>
@@ -300,16 +308,18 @@
 
 
 
+            <!-- STATS -->
+
             <div class="stats">
 
 
                 <div class="stat">
 
-                    <small>AGE</small>
+                    <small>
+                        AGE
+                    </small>
 
-                    <strong
-                        id="dashAge"
-                    >
+                    <strong id="dashAge">
                         --
                     </strong>
 
@@ -323,11 +333,11 @@
 
                 <div class="stat">
 
-                    <small>HEIGHT</small>
+                    <small>
+                        HEIGHT
+                    </small>
 
-                    <strong
-                        id="dashHeight"
-                    >
+                    <strong id="dashHeight">
                         --
                     </strong>
 
@@ -341,11 +351,11 @@
 
                 <div class="stat">
 
-                    <small>WEIGHT</small>
+                    <small>
+                        WEIGHT
+                    </small>
 
-                    <strong
-                        id="dashWeight"
-                    >
+                    <strong id="dashWeight">
                         --
                     </strong>
 
@@ -359,17 +369,15 @@
 
                 <div class="stat">
 
-                    <small>BMI</small>
+                    <small>
+                        BMI
+                    </small>
 
-                    <strong
-                        id="dashBMI"
-                    >
+                    <strong id="dashBMI">
                         --
                     </strong>
 
-                    <span
-                        id="bmiStatus"
-                    >
+                    <span id="bmiStatus">
                         --
                     </span>
 
@@ -379,6 +387,8 @@
             </div>
 
 
+
+            <!-- PRIVATE NOTICE -->
 
             <div class="notice">
 
@@ -395,7 +405,9 @@
 
 
 
-            <!-- NUTRITION -->
+            <!-- =========================
+                 NUTRITION
+            ========================== -->
 
             <section class="feature-section">
 
@@ -410,8 +422,8 @@
                     </h2>
 
                     <p>
-                        Simple daily nutrition guidance based
-                        on your profile.
+                        Simple daily nutrition guidance
+                        based on your profile.
                     </p>
 
                 </div>
@@ -484,6 +496,7 @@
                         🥗 Today's Meal Ideas
                     </h3>
 
+
                     <div class="meal-list">
 
 
@@ -552,7 +565,9 @@
 
 
 
-            <!-- WATER TRACKER -->
+            <!-- =========================
+                 WATER TRACKER
+            ========================== -->
 
             <section class="feature-section">
 
@@ -567,7 +582,8 @@
                     </h2>
 
                     <p>
-                        Keep track of your daily water intake.
+                        Keep track of your daily
+                        water intake.
                     </p>
 
                 </div>
@@ -586,7 +602,9 @@
                                 DAILY WATER GOAL
                             </small>
 
-                            <strong id="waterTrackerGoal">
+                            <strong
+                                id="waterTrackerGoal"
+                            >
                                 --
                             </strong>
 
@@ -600,7 +618,9 @@
                                 DRANK TODAY
                             </small>
 
-                            <strong id="waterIntake">
+                            <strong
+                                id="waterIntake"
+                            >
                                 0 ml
                             </strong>
 
@@ -681,13 +701,196 @@
 
 
 
+            <!-- =========================
+                 EXERCISE TRACKER
+            ========================== -->
+
+            <section class="feature-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        YOUR ACTIVITY
+                    </span>
+
+                    <h2>
+                        Exercise Tracker 🏃
+                    </h2>
+
+                    <p>
+                        Keep track of your daily
+                        physical activity.
+                    </p>
+
+                </div>
+
+
+
+                <div class="exercise-card">
+
+
+                    <div class="exercise-top">
+
+
+                        <div>
+
+                            <small>
+                                DAILY EXERCISE GOAL
+                            </small>
+
+                            <strong>
+                                30 min
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="exercise-intake">
+
+                            <small>
+                                DONE TODAY
+                            </small>
+
+                            <strong
+                                id="exerciseIntake"
+                            >
+                                0 min
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- EXERCISE TYPE -->
+
+                    <label
+                        class="exercise-label"
+                        for="exerciseType"
+                    >
+                        Exercise type
+                    </label>
+
+
+                    <select
+                        id="exerciseType"
+                        class="exercise-select"
+                    >
+
+                        <option value="Walking">
+                            Walking
+                        </option>
+
+                        <option value="Running">
+                            Running
+                        </option>
+
+                        <option value="Cycling">
+                            Cycling
+                        </option>
+
+                        <option value="Workout">
+                            Workout
+                        </option>
+
+                        <option value="Yoga">
+                            Yoga
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- PROGRESS -->
+
+                    <div class="exercise-progress">
+
+                        <div
+                            id="exerciseProgress"
+                            class="exercise-progress-fill"
+                        ></div>
+
+                    </div>
+
+
+
+                    <p id="exerciseProgressText">
+                        0% of your daily goal
+                    </p>
+
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="exercise-buttons">
+
+
+                        <button
+                            type="button"
+                            onclick="addExercise(10)"
+                        >
+                            +10 min
+                        </button>
+
+
+                        <button
+                            type="button"
+                            onclick="addExercise(20)"
+                        >
+                            +20 min
+                        </button>
+
+
+                        <button
+                            type="button"
+                            onclick="addExercise(30)"
+                        >
+                            +30 min
+                        </button>
+
+
+                    </div>
+
+
+
+                    <button
+                        type="button"
+                        class="reset-exercise"
+                        onclick="resetExercise()"
+                    >
+                        Reset Today's Exercise
+                    </button>
+
+
+
+                    <div
+                        id="exerciseMessage"
+                        class="exercise-message"
+                    ></div>
+
+
+                </div>
+
+            </section>
+
+
+
         </main>
 
     </section>
 
 
 
-    <!-- PROFILE MODAL -->
+    <!-- =========================
+         PROFILE MODAL
+    ========================== -->
 
     <div
         id="profileModal"
@@ -764,7 +967,10 @@
 </div>
 
 
-<!-- MAIN JAVASCRIPT -->
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
 
 <script
     type="module"

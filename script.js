@@ -51,18 +51,21 @@ let confirmationResult = null;
 let recaptchaVerifier = null;
 
 
-
 /* =========================
-   WATER TRACKER
+   DAILY TRACKERS
 ========================= */
 
 let todayWater = 0;
 
+let todayExercise = 0;
 
-/*
- * Returns today's date.
- * Example: 2026-09-25
- */
+const EXERCISE_GOAL = 30;
+
+
+
+/* =========================
+   TODAY'S DATE
+========================= */
 
 function getTodayDate() {
 
@@ -91,14 +94,18 @@ function getTodayDate() {
 function createRecaptcha() {
 
     if (recaptchaVerifier) {
+
         return recaptchaVerifier;
+
     }
+
 
     recaptchaVerifier =
         new RecaptchaVerifier(
             auth,
             "recaptcha-container",
             {
+
                 size: "normal",
 
                 callback: () => {
@@ -116,10 +123,13 @@ function createRecaptcha() {
                     );
 
                 }
+
             }
         );
 
+
     return recaptchaVerifier;
+
 }
 
 
@@ -152,6 +162,7 @@ async function sendOTP() {
         );
 
         return;
+
     }
 
 
@@ -237,6 +248,7 @@ async function verifyOTP() {
         );
 
         return;
+
     }
 
 
@@ -247,6 +259,7 @@ async function verifyOTP() {
         );
 
         return;
+
     }
 
 
@@ -324,7 +337,8 @@ document
                 .value = "";
 
 
-            confirmationResult = null;
+            confirmationResult =
+                null;
 
         }
     );
@@ -344,6 +358,7 @@ onAuthStateChanged(
             showLogin();
 
             return;
+
         }
 
 
@@ -467,6 +482,7 @@ async function saveProfile() {
         );
 
         return;
+
     }
 
 
@@ -513,17 +529,20 @@ async function saveProfile() {
         );
 
         return;
+
     }
 
 
     try {
 
         await setDoc(
+
             doc(
                 db,
                 "users",
                 user.uid
             ),
+
             {
 
                 phone:
@@ -547,6 +566,15 @@ async function saveProfile() {
                 waterDate:
                     getTodayDate(),
 
+                exerciseToday:
+                    0,
+
+                exerciseDate:
+                    getTodayDate(),
+
+                exerciseType:
+                    "Walking",
+
                 updatedAt:
                     serverTimestamp(),
 
@@ -554,6 +582,7 @@ async function saveProfile() {
                     serverTimestamp()
 
             }
+
         );
 
 
@@ -564,11 +593,22 @@ async function saveProfile() {
             height,
             weight,
 
-            waterToday: 0,
-            waterDate: getTodayDate()
+            waterToday:
+                0,
+
+            waterDate:
+                getTodayDate(),
+
+            exerciseToday:
+                0,
+
+            exerciseDate:
+                getTodayDate(),
+
+            exerciseType:
+                "Walking"
 
         });
-
 
     }
 
@@ -708,7 +748,7 @@ function showDashboard(data) {
 
 
     /* =========================
-       NUTRITION CALCULATIONS
+       NUTRITION
     ========================= */
 
     const weight =
@@ -732,13 +772,6 @@ function showDashboard(data) {
          * These are not medical prescriptions.
          */
 
-
-        /*
-         * Simple BMR estimate.
-         * Sex/activity are not collected yet,
-         * so this is only a rough estimate.
-         */
-
         const calories =
             Math.round(
                 (10 * weight) +
@@ -748,19 +781,11 @@ function showDashboard(data) {
             );
 
 
-        /*
-         * General protein estimate.
-         */
-
         const protein =
             Math.round(
                 weight * 0.8
             );
 
-
-        /*
-         * General hydration estimate.
-         */
 
         const water =
             Math.round(
@@ -816,37 +841,26 @@ function showDashboard(data) {
            WATER TRACKER
         ========================= */
 
-        let savedWater = 0;
-
         const today =
             getTodayDate();
 
-
-        /*
-         * If saved water belongs to today,
-         * load it.
-         *
-         * If it is from another day,
-         * start today's tracker from zero.
-         */
 
         if (
             data.waterDate === today &&
             typeof data.waterToday === "number"
         ) {
 
-            savedWater =
+            todayWater =
                 data.waterToday;
 
         }
 
+        else {
 
-        todayWater =
-            savedWater;
+            todayWater =
+                0;
 
-
-        const waterGoal =
-            water;
+        }
 
 
         const waterGoalElement =
@@ -858,17 +872,64 @@ function showDashboard(data) {
         if (waterGoalElement) {
 
             waterGoalElement.textContent =
-                (waterGoal / 1000).toFixed(1) +
+                (water / 1000).toFixed(1) +
                 " L";
 
         }
 
 
         updateWaterUI(
-            waterGoal
+            water
         );
 
     }
+
+
+
+    /* =========================
+       EXERCISE TRACKER
+    ========================= */
+
+    const today =
+        getTodayDate();
+
+
+    if (
+        data.exerciseDate === today &&
+        typeof data.exerciseToday === "number"
+    ) {
+
+        todayExercise =
+            data.exerciseToday;
+
+    }
+
+    else {
+
+        todayExercise =
+            0;
+
+    }
+
+
+    const exerciseTypeElement =
+        document.getElementById(
+            "exerciseType"
+        );
+
+
+    if (
+        exerciseTypeElement &&
+        data.exerciseType
+    ) {
+
+        exerciseTypeElement.value =
+            data.exerciseType;
+
+    }
+
+
+    updateExerciseUI();
 
 }
 
@@ -973,7 +1034,10 @@ function updateWaterUI(goal = null) {
     }
 
 
-    if (!goal || goal <= 0) {
+    if (
+        !goal ||
+        goal <= 0
+    ) {
 
         return;
 
@@ -1002,9 +1066,7 @@ function updateWaterUI(goal = null) {
         "% of your daily goal";
 
 
-    if (
-        messageElement
-    ) {
+    if (messageElement) {
 
         if (percentage >= 100) {
 
@@ -1027,7 +1089,7 @@ function updateWaterUI(goal = null) {
 
 
 /* =========================
-   SAVE WATER DATA
+   SAVE WATER
 ========================= */
 
 async function saveWaterData() {
@@ -1070,7 +1132,7 @@ async function saveWaterData() {
 
 
         console.log(
-            "Water data saved:",
+            "Water saved:",
             todayWater
         );
 
@@ -1085,6 +1147,239 @@ async function saveWaterData() {
         );
 
     }
+
+}
+
+
+
+/* =========================
+   EXERCISE - ADD
+========================= */
+
+window.addExercise =
+    async function(minutes) {
+
+        todayExercise += minutes;
+
+
+        updateExerciseUI();
+
+
+        await saveExerciseData();
+
+    };
+
+
+
+/* =========================
+   EXERCISE - RESET
+========================= */
+
+window.resetExercise =
+    async function() {
+
+        todayExercise = 0;
+
+
+        updateExerciseUI();
+
+
+        await saveExerciseData();
+
+    };
+
+
+
+/* =========================
+   EXERCISE - UPDATE UI
+========================= */
+
+function updateExerciseUI() {
+
+    const intakeElement =
+        document.getElementById(
+            "exerciseIntake"
+        );
+
+
+    const progressElement =
+        document.getElementById(
+            "exerciseProgress"
+        );
+
+
+    const progressTextElement =
+        document.getElementById(
+            "exerciseProgressText"
+        );
+
+
+    const messageElement =
+        document.getElementById(
+            "exerciseMessage"
+        );
+
+
+    if (
+        !intakeElement ||
+        !progressElement ||
+        !progressTextElement
+    ) {
+
+        return;
+
+    }
+
+
+    const percentage =
+        Math.min(
+            Math.round(
+                (todayExercise /
+                EXERCISE_GOAL) *
+                100
+            ),
+            100
+        );
+
+
+    intakeElement.textContent =
+        todayExercise + " min";
+
+
+    progressElement.style.width =
+        percentage + "%";
+
+
+    progressTextElement.textContent =
+        percentage +
+        "% of your daily goal";
+
+
+    if (messageElement) {
+
+        if (
+            todayExercise >=
+            EXERCISE_GOAL
+        ) {
+
+            messageElement.textContent =
+                "🎉 Daily exercise goal completed!";
+
+        }
+
+        else {
+
+            messageElement.textContent =
+                "";
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================
+   SAVE EXERCISE
+========================= */
+
+async function saveExerciseData() {
+
+    const user =
+        auth.currentUser;
+
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    const exerciseTypeElement =
+        document.getElementById(
+            "exerciseType"
+        );
+
+
+    const exerciseType =
+        exerciseTypeElement
+            ? exerciseTypeElement.value
+            : "Walking";
+
+
+    try {
+
+        await updateDoc(
+
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+
+            {
+
+                exerciseToday:
+                    todayExercise,
+
+                exerciseDate:
+                    getTodayDate(),
+
+                exerciseType:
+                    exerciseType,
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+        console.log(
+            "Exercise saved:",
+            todayExercise,
+            exerciseType
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Exercise save error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   EXERCISE TYPE CHANGE
+========================= */
+
+const exerciseTypeElement =
+    document.getElementById(
+        "exerciseType"
+    );
+
+
+if (exerciseTypeElement) {
+
+    exerciseTypeElement.addEventListener(
+        "change",
+        async () => {
+
+            await saveExerciseData();
+
+        }
+    );
 
 }
 
@@ -1292,15 +1587,6 @@ document
                     );
 
 
-                /*
-                 * Keep existing water data
-                 * while updating profile.
-                 */
-
-                const currentWater =
-                    todayWater;
-
-
                 showDashboard({
 
                     name,
@@ -1309,10 +1595,24 @@ document
                     weight,
 
                     waterToday:
-                        currentWater,
+                        todayWater,
 
                     waterDate:
-                        getTodayDate()
+                        getTodayDate(),
+
+                    exerciseToday:
+                        todayExercise,
+
+                    exerciseDate:
+                        getTodayDate(),
+
+                    exerciseType:
+                        document
+                            .getElementById(
+                                "exerciseType"
+                            )
+                            ?.value ||
+                        "Walking"
 
                 });
 
