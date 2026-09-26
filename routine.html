@@ -129,6 +129,102 @@
 
         </section>
 
+   <!-- =========================
+     SLEEP SCHEDULE
+========================= -->
+
+<section class="sleep-card">
+
+    <div class="sleep-heading">
+        <span>SLEEP & REST</span>
+
+        <h2>
+            😴 Sleep Schedule
+        </h2>
+
+        <p>
+            Keep a regular sleep and wake-up routine.
+        </p>
+    </div>
+
+
+    <div class="sleep-inputs">
+
+        <div class="sleep-input">
+
+            <label>
+                🌙 Bedtime
+            </label>
+
+            <input
+                type="time"
+                id="bedTime"
+                value="22:30"
+            >
+
+        </div>
+
+
+        <div class="sleep-input">
+
+            <label>
+                🌅 Wake-up time
+            </label>
+
+            <input
+                type="time"
+                id="wakeTime"
+                value="06:30"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="sleep-result">
+
+        <div>
+            <span>Total Sleep</span>
+
+            <strong id="sleepDuration">
+                8h 00m
+            </strong>
+        </div>
+
+
+        <div>
+            <span>Daily Goal</span>
+
+            <strong>
+                8h
+            </strong>
+        </div>
+
+    </div>
+
+
+    <div class="sleep-progress">
+
+        <div class="sleep-progress-bar">
+            <div id="sleepProgressFill"></div>
+        </div>
+
+        <p id="sleepMessage">
+            Good sleep schedule 🌿
+        </p>
+
+    </div>
+
+
+    <button
+        class="save-sleep-btn"
+        onclick="saveSleepSchedule()"
+    >
+        Save Sleep Schedule
+    </button>
+
+</section>
     </main>
 
 

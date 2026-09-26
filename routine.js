@@ -315,3 +315,160 @@ function saveRoutine() {
 /* START */
 
 displayRoutine();0
+/* =========================
+   SLEEP SCHEDULE
+========================= */
+
+const bedTimeInput =
+    document.getElementById("bedTime");
+
+const wakeTimeInput =
+    document.getElementById("wakeTime");
+
+
+function calculateSleep() {
+
+    const bedTime = bedTimeInput.value;
+    const wakeTime = wakeTimeInput.value;
+
+    if (!bedTime || !wakeTime) {
+        return;
+    }
+
+    let bed = timeToMinutes(bedTime);
+    let wake = timeToMinutes(wakeTime);
+
+    /*
+       If wake-up time is next day
+    */
+
+    if (wake <= bed) {
+        wake += 24 * 60;
+    }
+
+    const totalMinutes = wake - bed;
+
+    const hours =
+        Math.floor(totalMinutes / 60);
+
+    const minutes =
+        totalMinutes % 60;
+
+    document.getElementById(
+        "sleepDuration"
+    ).textContent =
+        `${hours}h ${minutes}m`;
+
+
+    /*
+       8 hour sleep goal
+    */
+
+    const goal = 8 * 60;
+
+    let progress =
+        (totalMinutes / goal) * 100;
+
+    progress =
+        Math.min(progress, 100);
+
+
+    document.getElementById(
+        "sleepProgressFill"
+    ).style.width =
+        progress + "%";
+
+
+    const message =
+        document.getElementById(
+            "sleepMessage"
+        );
+
+
+    if (totalMinutes < 6 * 60) {
+
+        message.textContent =
+            "Try to get more sleep tonight 🌙";
+
+    } else if (totalMinutes < 8 * 60) {
+
+        message.textContent =
+            "A little more sleep may help you reach your goal.";
+
+    } else {
+
+        message.textContent =
+            "Good sleep schedule 🌿";
+
+    }
+
+}
+
+
+function timeToMinutes(time) {
+
+    const parts = time.split(":");
+
+    return (
+        parseInt(parts[0]) * 60 +
+        parseInt(parts[1])
+    );
+
+}
+
+
+function saveSleepSchedule() {
+
+    localStorage.setItem(
+        "nourivaBedTime",
+        bedTimeInput.value
+    );
+
+    localStorage.setItem(
+        "nourivaWakeTime",
+        wakeTimeInput.value
+    );
+
+    calculateSleep();
+
+    alert(
+        "Sleep schedule saved successfully."
+    );
+
+}
+
+
+/* LOAD SAVED SCHEDULE */
+
+const savedBed =
+    localStorage.getItem(
+        "nourivaBedTime"
+    );
+
+const savedWake =
+    localStorage.getItem(
+        "nourivaWakeTime"
+    );
+
+
+if (savedBed) {
+    bedTimeInput.value = savedBed;
+}
+
+if (savedWake) {
+    wakeTimeInput.value = savedWake;
+}
+
+
+bedTimeInput.addEventListener(
+    "change",
+    calculateSleep
+);
+
+wakeTimeInput.addEventListener(
+    "change",
+    calculateSleep
+);
+
+
+calculateSleep();

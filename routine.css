@@ -357,3 +357,132 @@ body {
     }
 
 }
+/* =========================
+   SLEEP SCHEDULE
+========================= */
+
+.sleep-card {
+    background: white;
+    border-radius: 22px;
+    padding: 28px;
+    margin-top: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(24, 55, 43, 0.07);
+}
+
+.sleep-heading span {
+    color: #2f7d5b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.sleep-heading h2 {
+    font-size: 24px;
+    margin: 7px 0;
+}
+
+.sleep-heading p {
+    color: #68756f;
+    font-size: 14px;
+}
+
+.sleep-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.sleep-input {
+    background: #f5faf7;
+    padding: 17px;
+    border-radius: 14px;
+}
+
+.sleep-input label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.sleep-input input {
+    width: 100%;
+    border: 1px solid #d8e5dd;
+    border-radius: 9px;
+    padding: 11px;
+    font-size: 15px;
+    background: white;
+}
+
+.sleep-result {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 20px;
+
+    background: #edf7f1;
+    border-radius: 14px;
+}
+
+.sleep-result span {
+    display: block;
+    color: #68756f;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.sleep-result strong {
+    font-size: 22px;
+    color: #2f7d5b;
+}
+
+.sleep-progress {
+    margin-top: 20px;
+}
+
+.sleep-progress-bar {
+    height: 9px;
+    background: #e5eee8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#sleepProgressFill {
+    height: 100%;
+    width: 0%;
+    background: #2f7d5b;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.sleep-progress p {
+    margin-top: 9px;
+    font-size: 13px;
+    color: #68756f;
+}
+
+.save-sleep-btn {
+    margin-top: 20px;
+    border: none;
+    background: #2f7d5b;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+
+    .sleep-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .sleep-result {
+        gap: 15px;
+    }
+
+}
