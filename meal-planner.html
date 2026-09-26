@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nouriva - 7 Day Meal Planner</title>
+
+    <link rel="stylesheet" href="meal-planner.css">
+    <link rel="stylesheet" href="meal-planner.js">
+</head>
+
+<body>
+
+<header class="meal-header">
+
+    <div>
+        <div class="brand">NOURIVA</div>
+        <p>7-Day Meal Planner</p>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="meal-container">
+
+    <section class="meal-hero">
+
+        <span>SMART NUTRITION</span>
+
+        <h1>
+            Plan your meals 🍽️
+        </h1>
+
+        <p>
+            Organize your breakfast, lunch, snacks
+            and dinner throughout the week.
+        </p>
+
+    </section>
+
+
+    <!-- WEEK SELECTOR -->
+
+    <div class="day-selector">
+
+        <button onclick="showDay(0)" class="day-btn active">
+            Mon
+        </button>
+
+        <button onclick="showDay(1)" class="day-btn">
+            Tue
+        </button>
+
+        <button onclick="showDay(2)" class="day-btn">
+            Wed
+        </button>
+
+        <button onclick="showDay(3)" class="day-btn">
+            Thu
+        </button>
+
+        <button onclick="showDay(4)" class="day-btn">
+            Fri
+        </button>
+
+        <button onclick="showDay(5)" class="day-btn">
+            Sat
+        </button>
+
+        <button onclick="showDay(6)" class="day-btn">
+            Sun
+        </button>
+
+    </div>
+
+
+    <!-- DAY TITLE -->
+
+    <section class="day-title">
+
+        <span>MEAL PLAN</span>
+
+        <h2 id="dayTitle">
+            Monday
+        </h2>
+
+    </section>
+
+
+    <!-- MEALS -->
+
+    <section id="mealList" class="meal-list">
+    </section>
+
+
+    <!-- NUTRITION NOTE -->
+
+    <section class="nutrition-note">
+
+        <div class="note-icon">
+            💧
+        </div>
+
+        <div>
+            <h3>
+                Don't forget hydration
+            </h3>
+
+            <p>
+                Keep drinking water throughout
+                the day according to your needs.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="meal-planner.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+/* =========================
+   NOURIVA MEAL PLANNER
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5faf7;
+    color: #173f35;
+}
+
+
+/* HEADER */
+
+.meal-header {
+    background: white;
+    padding: 22px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e2eee7;
+}
+
+.brand {
+    color: #2f7d5b;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.meal-header p {
+    color: #718078;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #2f7d5b;
+
+    border: 1px solid #cfe2d7;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* MAIN */
+
+.meal-container {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 45px auto;
+}
+
+
+/* HERO */
+
+.meal-hero {
+    margin-bottom: 30px;
+}
+
+.meal-hero span,
+.day-title span {
+    color: #2f7d5b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.meal-hero h1 {
+    font-size: 38px;
+    margin: 8px 0;
+}
+
+.meal-hero p {
+    color: #68756f;
+    font-size: 15px;
+}
+
+
+/* DAY SELECTOR */
+
+.day-selector {
+    display: flex;
+    gap: 8px;
+
+    background: white;
+
+    padding: 10px;
+
+    border-radius: 15px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 8px 25px rgba(24, 55, 43, 0.06);
+}
+
+.day-btn {
+    flex: 1;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 12px 5px;
+
+    border-radius: 10px;
+
+    color: #68756f;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.day-btn.active {
+    background: #2f7d5b;
+    color: white;
+}
+
+
+/* DAY TITLE */
+
+.day-title {
+    margin-bottom: 18px;
+}
+
+.day-title h2 {
+    font-size: 28px;
+    margin-top: 6px;
+}
+
+
+/* MEAL LIST */
+
+.meal-list {
+    display: grid;
+    gap: 15px;
+}
+
+
+/* MEAL CARD */
+
+.meal-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(24, 55, 43, 0.06);
+}
+
+.meal-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 15px;
+
+    background: #edf7f1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    flex-shrink: 0;
+}
+
+.meal-info {
+    flex: 1;
+}
+
+.meal-time {
+    color: #2f7d5b;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.meal-info h3 {
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+.meal-info p {
+    color: #748079;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* CHECK */
+
+.meal-check {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    border: 2px solid #c5d6cc;
+
+    background: white;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+.meal-card.completed .meal-check {
+    background: #2f7d5b;
+    border-color: #2f7d5b;
+}
+
+.meal-card.completed h3 {
+    color: #83918a;
+    text-decoration: line-through;
+}
+
+
+/* HYDRATION */
+
+.nutrition-note {
+    background: #eef8f2;
+
+    border: 1px solid #d8eade;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-top: 25px;
+}
+
+.note-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.nutrition-note h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.nutrition-note p {
+    color: #68756f;
+    font-size: 13px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .meal-header {
+        padding: 18px 5%;
+    }
+
+    .meal-container {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .meal-hero h1 {
+        font-size: 30px;
+    }
+
+    .day-selector {
+        overflow-x: auto;
+    }
+
+    .day-btn {
+        min-width: 55px;
+    }
+
+    .meal-card {
+        padding: 17px;
+    }
+
+    .meal-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+}
