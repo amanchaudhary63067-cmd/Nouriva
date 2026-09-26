@@ -2,129 +2,114 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Nouriva - Ask Nouriva</title>
 
-    <link rel="stylesheet" href="ask-nouriva.css">
-    <link rel="stylesheet" href="ask-nourvia.js">
+    <link
+        rel="stylesheet"
+        href="ask-nouriva.css"
+    >
+
+    <!-- GOOGLE PROGRAMMABLE SEARCH -->
+
+    <script
+        async
+        src="https://cse.google.com/cse.js?cx=YOUR_SEARCH_ENGINE_ID"
+    ></script>
+
 </head>
 
+
 <body>
+
 
 <header class="ask-header">
 
     <div>
-        <div class="brand">NOURIVA</div>
-        <p>Ask Nouriva</p>
+
+        <div class="brand">
+            NOURIVA
+        </div>
+
+        <p>
+            Ask Nouriva
+        </p>
+
     </div>
 
-    <a href="index.html" class="back-btn">
+
+    <a
+        href="index.html"
+        class="back-btn"
+    >
         ← Dashboard
     </a>
 
 </header>
 
 
+
 <main class="ask-container">
+
+
+    <!-- HERO -->
 
     <section class="ask-hero">
 
-        <span>ASK NOURIVA</span>
+        <span>
+            ASK NOURIVA
+        </span>
 
         <h1>
-            Have a question? 🤖
+            What do you want to know? 🤖
         </h1>
 
         <p>
-            Ask your question and get information
-            without leaving the Nouriva page.
+            Search the web without leaving
+            your Nouriva page.
         </p>
 
     </section>
 
 
-    <!-- QUESTION BOX -->
 
-    <section class="question-card">
+    <!-- GOOGLE SEARCH -->
 
-        <div class="question-box">
+    <section class="search-card">
 
-            <textarea
-                id="questionInput"
-                placeholder="Ask anything..."
-                rows="3"
-            ></textarea>
+        <div class="search-title">
 
-            <button
-                id="askButton"
-                onclick="askQuestion()"
-            >
-                🔍 Ask Nouriva
-            </button>
+            <h2>
+                🔍 Ask anything
+            </h2>
+
+            <p>
+                Type your question below.
+            </p>
 
         </div>
 
 
-        <div class="suggestions">
+        <!-- GOOGLE SEARCH BOX + RESULTS -->
 
-            <button onclick="useQuestion(
-                'What should I eat after exercise?'
-            )">
-                🍎 What should I eat after exercise?
-            </button>
+        <div class="google-search-area">
 
-            <button onclick="useQuestion(
-                'How much water should I drink every day?'
-            )">
-                💧 How much water should I drink?
-            </button>
-
-            <button onclick="useQuestion(
-                'What is a healthy breakfast?'
-            )">
-                🍳 Healthy breakfast ideas
-            </button>
+            <div class="gcse-search"></div>
 
         </div>
 
     </section>
 
 
-    <!-- ANSWER -->
 
-    <section
-        id="answerSection"
-        class="answer-card hidden"
-    >
-
-        <div class="answer-heading">
-
-            <span>ANSWER</span>
-
-            <div id="loading">
-                Searching...
-            </div>
-
-        </div>
-
-
-        <div
-            id="answerContent"
-            class="answer-content"
-        ></div>
-
-
-        <div
-            id="sourceArea"
-            class="source-area"
-        ></div>
-
-    </section>
-
-
-    <!-- NOTICE -->
+    <!-- INFO -->
 
     <section class="info-card">
 
@@ -133,17 +118,19 @@
         </div>
 
         <p>
-            Nouriva provides general information and
-            wellness guidance. For medical concerns,
-            consult a qualified healthcare professional.
+            Search results are provided through
+            Google Programmable Search. For
+            medical concerns, use reliable health
+            sources and consult a qualified
+            healthcare professional when needed.
         </p>
 
     </section>
 
+
 </main>
 
 
-<script src="ask-nouriva.js"></script>
-
 </body>
+
 </html>
