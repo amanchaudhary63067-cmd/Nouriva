@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nouriva - Grocery List</title>
+
+    <link rel="stylesheet" href="grocery.css">
+</head>
+
+<body>
+
+<header class="grocery-header">
+
+    <div>
+        <div class="brand">NOURIVA</div>
+        <p>My Grocery List</p>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="grocery-container">
+
+    <section class="grocery-hero">
+
+        <span>WEEKLY SHOPPING</span>
+
+        <h1>
+            My Grocery List 🛒
+        </h1>
+
+        <p>
+            Keep your healthy food essentials
+            organized in one place.
+        </p>
+
+    </section>
+
+
+    <section class="add-grocery">
+
+        <input
+            type="text"
+            id="groceryInput"
+            placeholder="Add grocery item..."
+        >
+
+        <button onclick="addGrocery()">
+            + Add
+        </button>
+
+    </section>
+
+
+    <div class="grocery-actions">
+
+        <span id="groceryCount">
+            0 items
+        </span>
+
+        <button onclick="clearCompleted()">
+            Clear Completed
+        </button>
+
+    </div>
+
+
+    <section class="grocery-list" id="groceryList">
+    </section>
+
+
+    <section class="grocery-tip">
+
+        <div class="tip-icon">
+            🥦
+        </div>
+
+        <div>
+
+            <h3>
+                Smart shopping tip
+            </h3>
+
+            <p>
+                Prefer fresh vegetables, fruits,
+                whole grains and protein-rich foods.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="grocery.js"></script>
+
+</body>
+</html>

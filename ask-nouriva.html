@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nouriva - Ask Nouriva</title>
+
+    <link rel="stylesheet" href="ask-nouriva.css">
+</head>
+
+<body>
+
+<header class="ask-header">
+
+    <div>
+        <div class="brand">NOURIVA</div>
+        <p>Ask Nouriva</p>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="ask-container">
+
+    <section class="ask-hero">
+
+        <span>ASK NOURIVA</span>
+
+        <h1>
+            Have a question? 🤖
+        </h1>
+
+        <p>
+            Ask your question and get information
+            without leaving the Nouriva page.
+        </p>
+
+    </section>
+
+
+    <!-- QUESTION BOX -->
+
+    <section class="question-card">
+
+        <div class="question-box">
+
+            <textarea
+                id="questionInput"
+                placeholder="Ask anything..."
+                rows="3"
+            ></textarea>
+
+            <button
+                id="askButton"
+                onclick="askQuestion()"
+            >
+                🔍 Ask Nouriva
+            </button>
+
+        </div>
+
+
+        <div class="suggestions">
+
+            <button onclick="useQuestion(
+                'What should I eat after exercise?'
+            )">
+                🍎 What should I eat after exercise?
+            </button>
+
+            <button onclick="useQuestion(
+                'How much water should I drink every day?'
+            )">
+                💧 How much water should I drink?
+            </button>
+
+            <button onclick="useQuestion(
+                'What is a healthy breakfast?'
+            )">
+                🍳 Healthy breakfast ideas
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANSWER -->
+
+    <section
+        id="answerSection"
+        class="answer-card hidden"
+    >
+
+        <div class="answer-heading">
+
+            <span>ANSWER</span>
+
+            <div id="loading">
+                Searching...
+            </div>
+
+        </div>
+
+
+        <div
+            id="answerContent"
+            class="answer-content"
+        ></div>
+
+
+        <div
+            id="sourceArea"
+            class="source-area"
+        ></div>
+
+    </section>
+
+
+    <!-- NOTICE -->
+
+    <section class="info-card">
+
+        <div class="info-icon">
+            ℹ️
+        </div>
+
+        <p>
+            Nouriva provides general information and
+            wellness guidance. For medical concerns,
+            consult a qualified healthcare professional.
+        </p>
+
+    </section>
+
+</main>
+
+
+<script src="ask-nouriva.js"></script>
+
+</body>
+</html>

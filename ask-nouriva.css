@@ -1,0 +1,357 @@
+/* =========================
+   NOURIVA ASK
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5faf7;
+    color: #173f35;
+}
+
+
+/* HEADER */
+
+.ask-header {
+    background: white;
+
+    padding: 22px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e2eee7;
+}
+
+.brand {
+    color: #2f7d5b;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.ask-header p {
+    color: #718078;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+.back-btn {
+    text-decoration: none;
+
+    color: #2f7d5b;
+
+    border: 1px solid #cfe2d7;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* MAIN */
+
+.ask-container {
+    width: 90%;
+
+    max-width: 900px;
+
+    margin: 50px auto;
+}
+
+
+/* HERO */
+
+.ask-hero {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.ask-hero span {
+    color: #2f7d5b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.ask-hero h1 {
+    font-size: 38px;
+
+    margin: 10px 0;
+}
+
+.ask-hero p {
+    color: #68756f;
+
+    font-size: 15px;
+}
+
+
+/* QUESTION CARD */
+
+.question-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 30px rgba(24, 55, 43, 0.07);
+}
+
+
+/* QUESTION BOX */
+
+.question-box {
+    border: 1px solid #d6e5dc;
+
+    border-radius: 16px;
+
+    padding: 15px;
+
+    background: #fbfdfc;
+}
+
+.question-box textarea {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    resize: vertical;
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    color: #173f35;
+}
+
+.question-box textarea::placeholder {
+    color: #9aa59f;
+}
+
+.question-box button {
+    display: block;
+
+    margin-left: auto;
+
+    margin-top: 10px;
+
+    border: none;
+
+    background: #2f7d5b;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.question-box button:hover {
+    background: #245f46;
+}
+
+
+/* SUGGESTIONS */
+
+.suggestions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.suggestions button {
+    border: 1px solid #d7e7de;
+
+    background: #f4faf6;
+
+    color: #356c54;
+
+    padding: 9px 12px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+
+/* ANSWER */
+
+.answer-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    margin-top: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(24, 55, 43, 0.07);
+}
+
+.hidden {
+    display: none;
+}
+
+.answer-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #edf1ee;
+
+    padding-bottom: 15px;
+
+    margin-bottom: 20px;
+}
+
+.answer-heading span {
+    color: #2f7d5b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+#loading {
+    color: #7c8982;
+
+    font-size: 12px;
+
+    display: none;
+}
+
+.answer-content {
+    color: #45554d;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    white-space: pre-line;
+}
+
+
+/* SOURCES */
+
+.source-area {
+    margin-top: 20px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #edf1ee;
+}
+
+.source-area a {
+    color: #2f7d5b;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* INFO */
+
+.info-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background: #eef8f2;
+
+    border: 1px solid #d8eade;
+
+    border-radius: 16px;
+
+    padding: 18px;
+
+    margin-top: 25px;
+}
+
+.info-icon {
+    font-size: 20px;
+}
+
+.info-card p {
+    color: #68756f;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .ask-header {
+        padding: 18px 5%;
+    }
+
+    .ask-container {
+        width: 92%;
+
+        margin: 35px auto;
+    }
+
+    .ask-hero h1 {
+        font-size: 30px;
+    }
+
+    .suggestions {
+        flex-direction: column;
+    }
+
+    .suggestions button {
+        text-align: left;
+    }
+
+}
